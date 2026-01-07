@@ -15,7 +15,7 @@ class FaceDetectorClient(Node):
         self.client = self.create_client(FaceDetector, '/face_detect')
         self.bridge = CvBridge()
         self.test1_image_path = get_package_share_directory(
-            'demo_python_service')+'/resource/test1.jpg'
+            'demo_python_service')+'/resource/test2.jpg'
         self.image = cv2.imread(self.test1_image_path)
 
     def send_request(self):
@@ -24,16 +24,18 @@ class FaceDetectorClient(Node):
             self.get_logger().info(f'等待服务端上线....')
         # 2.构造 Request
         request = FaceDetector.Request()
+        self.image = cv2.imread(self.test1_image_path)
         request.image = self.bridge.cv2_to_imgmsg(self.image)
-        # 3.发送并 spin 等待服务处理完成
+        # 3.发送异步请求
         future = self.client.call_async(request)
-        rclpy.spin_until_future_complete(self, future)
-        # 4.根据处理结果
-        response = future.result()
-        self.get_logger().info(
-            f'接收到响应: 图像中共有：{response.number}张脸，耗时{response.use_time}')
-        # 注释show_face_locations，防止显示堵塞无法多次请求
-        # self.show_face_locations(response)
+        # 4.添加响应的回调函数
+        def request_callback(result_future):
+            response = result_future.result()
+            self.get_logger().info(
+                f'接收到响应: 图像中共有：{response.number}张脸，耗时{response.use_time}')
+            self.show_face_locations(response)
+        future.add_done_callback(request_callback)
+    
 
     def call_set_parameters(self, parameters):
         # 1. 创建一个客户端，并等待服务上线
@@ -78,7 +80,8 @@ class FaceDetectorClient(Node):
                           (right, bottom), (255, 0, 0), 2)
 
         cv2.imshow('Face Detection Result', self.image)
-        cv2.waitKey(0)
+        cv2.waitKey(1000)  # 等待1秒后自动关闭，避免阻塞
+        cv2.destroyAllWindows()  # 关闭窗口
 
 
 def main(args=None):
