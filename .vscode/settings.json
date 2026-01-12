@@ -1,0 +1,14 @@
+{
+    "python.analysis.extraPaths": [
+        "/opt/ros/jazzy/lib/python3.12/site-packages",
+        "${workspaceFolder}/ros2bookcode/chapt4/chapt4_ws/install/chapt4_interfaces/lib/python3.12/site-packages",
+        "${workspaceFolder}/ros2bookcode/chapt4/chapt4_ws/install/demo_python_service/lib/python3.12/site-packages"
+    ],
+    "python.autoComplete.extraPaths": [
+        "/opt/ros/jazzy/lib/python3.12/site-packages",
+        "${workspaceFolder}/ros2bookcode/chapt4/chapt4_ws/install/chapt4_interfaces/lib/python3.12/site-packages",
+        "${workspaceFolder}/ros2bookcode/chapt4/chapt4_ws/install/demo_python_service/lib/python3.12/site-packages"
+    ],
+    "python.analysis.typeCheckingMode": "off",
+    "python.linting.enabled": false
+}
