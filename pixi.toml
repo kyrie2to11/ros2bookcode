@@ -1,0 +1,21 @@
+[workspace]
+authors = ["jarvis65536 <jarvis65536@gmail.com>"]
+channels = ["robostack-jazzy", "conda-forge"]
+name = "ros2bookcode"
+platforms = ["linux-64"]
+version = "0.1.0"
+
+[tasks]
+# 工作空间构建
+build = "colcon build"
+
+[dependencies]
+ros-jazzy-desktop = ">=0.11.0,<0.12"
+colcon-ros = ">=0.5.0,<0.6"
+
+[activation]
+# Set LIBRARY_PATH to include pixi environment libraries for linking
+scripts = ["set_lib_path.sh"]
+
+[target.linux-64.activation]
+scripts = ["set_lib_path.sh"]

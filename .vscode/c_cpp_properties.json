@@ -4,7 +4,7 @@
             "name": "Linux",
             "includePath": [
                 "${workspaceFolder}",
-                "/opt/ros/jazzy/include/**",
+                "${workspaceFolder}/.pixi/envs/default/include/**",
                 "${workspaceFolder}/chapt4/chapt4_ws/install/chapt4_interfaces/include/**"
             ],
             "defines": [],
