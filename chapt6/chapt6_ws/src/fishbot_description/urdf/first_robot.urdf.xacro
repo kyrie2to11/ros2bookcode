@@ -1,5 +1,14 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="first_robot">
+
+    <!-- 定义材质，在 robot 级别 -->
+    <material name="blue">
+        <color rgba="0.1 0.1 1.0 0.5" />
+    </material>
+    <material name="black">
+        <color rgba="0 0 0 0.5" />
+    </material>
+
     <!-- 声明 base 模块 -->
     <xacro:macro name="base_link" params="length radius">
         <link name="base_link">
@@ -8,12 +17,11 @@
                 <geometry>
                     <cylinder length="${length}" radius="${length}" />
                 </geometry>
-                <material name="blue">
-                    <color rgba="0.1 0.1 1.0 0.5" />
-                </material>
+                <material name="blue"/>
             </visual>
         </link>
     </xacro:macro>
+
     <!-- 声明 IMU 模块 -->
     <xacro:macro name="imu_link" params="imu_name xyz">
         <link name="${imu_name}_link">
@@ -22,10 +30,8 @@
                 <geometry>
                     <box size="0.02 0.02 0.02" />
                 </geometry>
+                <material name="black"/>
             </visual>
-            <material name="black">
-                <color rgba="0 0 0 0.5" />
-            </material>
         </link>
         <joint name="${imu_name}_joint" type="fixed">
             <parent link="base_link" />
@@ -33,6 +39,7 @@
             <origin xyz="${xyz}" />
         </joint>
     </xacro:macro>
+
     <!-- 传递参数调用 base_link 模块 -->
     <xacro:base_link length="0.12" radius="0.1" />
     <!-- 传递参数调用 imu 模块 -->
