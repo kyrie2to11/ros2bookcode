@@ -9,7 +9,7 @@ def generate_launch_description():
     default_model_path = urdf_tutorial_path + '/urdf/first_robot.urdf.xacro'
     default_rviz_config_path = urdf_tutorial_path + '/config/rviz/display_model.rviz'
     # 为 Launch 声明参数
-    action_declare_arg_mode_path = launch.actions.DeclareLaunchArgument(
+    action_declare_arg_model_path = launch.actions.DeclareLaunchArgument(
         name='model', default_value=str(default_model_path),
         description='URDF 的绝对路径')
     # 获取文件内容生成新的参数
@@ -21,7 +21,7 @@ def generate_launch_description():
     robot_state_publisher_node = launch_ros.actions.Node(
         package='robot_state_publisher',
         executable='robot_state_publisher',
-        parameters=[{'robot_description': robot_description}]
+        parameters=[{'robot_description': robot_description}] # parameters 指定参数，等同于 ros2 run robot_state_publisher robot_state_publisher --ros-args -p robot_description:=<robot_description>
     )
     # 关节状态发布节点
     joint_state_publisher_node = launch_ros.actions.Node(
@@ -32,10 +32,10 @@ def generate_launch_description():
     rviz_node = launch_ros.actions.Node(
         package='rviz2',
         executable='rviz2',
-        arguments=['-d', default_rviz_config_path]
+        arguments=['-d', default_rviz_config_path] # arguments 指定 RViz 配置文件, 等同于 ros2 run rviz2 -d /path/to/config.rviz
     )
     return launch.LaunchDescription([
-        action_declare_arg_mode_path,
+        action_declare_arg_model_path,
         joint_state_publisher_node,
         robot_state_publisher_node,
         rviz_node
