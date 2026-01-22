@@ -11,11 +11,13 @@ build = "colcon build"
 
 [dependencies]
 ros-jazzy-desktop = ">=0.11.0,<0.12"
+ros-jazzy-joint-state-publisher = ">=2.3.0,<3.0.0"
+ros-jazzy-robot-state-publisher = ">=3.0.0,<3.8.0"
+ros-jazzy-xacro = ">=2.1.0,<2.2.0"
 colcon-ros = ">=0.5.0,<0.6"
+urdfdom = ">=4.0.1,<5"
+gazebo = ">=11.15.1,<12"
 
 [activation]
 # Set LIBRARY_PATH to include pixi environment libraries for linking
-scripts = ["set_lib_path.sh"]
-
-[target.linux-64.activation]
 scripts = ["set_lib_path.sh"]
