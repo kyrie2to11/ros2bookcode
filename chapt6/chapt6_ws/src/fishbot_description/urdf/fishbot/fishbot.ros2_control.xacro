@@ -3,7 +3,7 @@
     <xacro:macro name="fishbot_ros2_control">
     <ros2_control name="FishBotGazeboSystem" type="system">
             <hardware>
-                <plugin>gazebo_ros2_control/GazeboSystem</plugin>
+                <plugin>gz_ros2_control/GazeboSimSystem</plugin>
             </hardware>
             <joint name="left_wheel_joint">
                 <command_interface name="velocity">
@@ -33,7 +33,7 @@
             </joint>
         </ros2_control>
         <gazebo>
-        <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
+        <plugin filename="libgz_ros2_control-system.so" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
             <parameters>$(find fishbot_description)/config/fishbot_ros2_controller.yaml</parameters>
             <ros>
                 <remapping>/fishbot_diff_drive_controller/cmd_vel_unstamped:=/cmd_vel</remapping>

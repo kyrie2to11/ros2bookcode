@@ -16,7 +16,14 @@ ros-jazzy-robot-state-publisher = ">=3.0.0,<3.8.0"
 ros-jazzy-xacro = ">=2.1.0,<2.2.0"
 colcon-ros = ">=0.5.0,<0.6"
 urdfdom = ">=4.0.1,<5"
-gazebo = ">=11.15.1,<12"
+ros-jazzy-ros-gz-sim = ">=1.0.18,<2"
+ros-jazzy-ros-gz-bridge = ">=1.0.18,<2"
+ros-jazzy-gz-ros2-control = ">=1.2.17,<2"
+ros-jazzy-ros2-control = ">=4.42.1,<5"
+ros-jazzy-ros2-control-cmake = ">=0.3.0,<0.4"
+ros-jazzy-ros2-controllers = ">=4.36.0,<5"
+ros-jazzy-controller-interface = ">=4.42.1,<5"
+ros-jazzy-controller-manager = ">=4.42.1,<5"
 
 [activation]
 # Set LIBRARY_PATH to include pixi environment libraries for linking

@@ -28,16 +28,18 @@ def generate_launch_description():
     # 通过 IncludeLaunchDescription 包含另外一个 launch 文件
     launch_gazebo = launch.actions.IncludeLaunchDescription(
         PythonLaunchDescriptionSource([get_package_share_directory(
-            'gazebo_ros'), '/launch', '/gazebo.launch.py']),
-      	# 传递参数
-        launch_arguments=[('world', default_world_path),('verbose','true')]
+            'ros_gz_sim'), '/launch', '/gz_sim.launch.py']),
+        launch_arguments=[('gz_args', ['-r -v 4', default_world_path])]
     )
     # 请求 Gazebo 加载机器人
     spawn_entity_node = launch_ros.actions.Node(
-        package='gazebo_ros',
-        executable='spawn_entity.py',
-        arguments=['-topic', '/robot_description',
-                   '-entity', robot_name_in_model, ])
+        package='ros_gz_sim',
+        executable='create',
+        arguments=['-name', robot_name_in_model,
+                   '-topic', '/robot_description',
+                   '-x', '0.0', '-y', '0.0', '-z', '0.0'],
+        output='screen'
+    )
     
     # 加载并激活 fishbot_joint_state_broadcaster 控制器
     load_joint_state_controller = launch.actions.ExecuteProcess(
