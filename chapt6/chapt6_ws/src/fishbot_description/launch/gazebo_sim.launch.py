@@ -59,8 +59,13 @@ def generate_launch_description():
         action_declare_arg_mode_path,
         robot_state_publisher_node,
         launch_gazebo,
-        spawn_entity_node,
-        # 事件动作，当加载机器人结束后执行    
+        # 事件动作，当 Gazebo 启动后再 spawn 机器人
+        launch.actions.RegisterEventHandler(
+            event_handler=launch.event_handlers.OnProcessExit(
+                target_action=launch_gazebo,
+                on_exit=[spawn_entity_node],)
+        ),
+        # 事件动作，当加载机器人结束后执行
         launch.actions.RegisterEventHandler(
             event_handler=launch.event_handlers.OnProcessExit(
                 target_action=spawn_entity_node,
