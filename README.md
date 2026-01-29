@@ -28,6 +28,28 @@ This project contains companion code for the book *ROS 2 Robot Development: From
 
 ---
 
+## 分支说明 / Branch Notes
+
+### ros2_jazzy_gz_harmonic 分支
+
+当前分支 `ros2_jazzy_gz_harmonic` 是为了适配 **Gazebo Harmonic** 而进行的修改版本。
+
+The current branch `ros2_jazzy_gz_harmonic` is a modified version adapted for **Gazebo Harmonic**.
+
+**主要变更 / Main Changes:**
+- 从 Gazebo Classic 迁移到 Gazebo Sim (Ignition Gazebo)
+- Migrated from Gazebo Classic to Gazebo Sim (Ignition Gazebo)
+- 适配 ROS 2 Jazzy 版本
+- Adapted for ROS 2 Jazzy version
+- 更新了相关的 launch 文件和世界文件
+- Updated relevant launch files and world files
+
+**原作者版本 / Original Author Version:**
+- 原作者使用的是 Gazebo Classic
+- The original author used Gazebo Classic
+
+---
+
 ## 环境配置 / Environment Setup
 
 本项目使用 [pixi](https://pixi.sh) 进行依赖管理和环境配置,便于复现环境。
