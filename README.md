@@ -18,6 +18,58 @@ This project contains companion code for the book *ROS 2 Robot Development: From
 
 ---
 
-## 作者 / Authors  
-- [小鱼 (Fish)](https://github.com/fishros)   
+## 原作者 / Original Author
 
+- [小鱼 (Fish)](https://github.com/fishros)
+
+## 改进版 / Modified Version
+
+- [kyrie2to11](https://github.com/kyrie2to11)
+
+---
+
+## 环境配置 / Environment Setup
+
+本项目使用 [pixi](https://pixi.sh) 进行依赖管理和环境配置,便于复现环境。
+
+This project uses [pixi](https://pixi.sh) for dependency management and environment configuration.
+
+### ROS2 命令行自动补全 / ROS2 Command Line Autocomplete
+
+在 pixi 环境中使用 ROS2 命令时，可以启用 tab 补全功能。
+
+To enable tab completion for ROS2 commands in the pixi environment, use the following methods:
+
+**方法 1 / Method 1**: Source the completion script
+
+```bash
+pixi shell
+source auto_complete.bash
+```
+
+**方法 2 / Method 2**: 使用 `register-python-argcomplete` (需要安装 argcomplete 但由于依赖传递已自动安装 / argcomplete needs to be installed, but it was already installed automatically due to transitive dependencies.)
+
+```bash
+pixi shell
+eval "$(register-python-argcomplete ros2)"
+eval "$(register-python-argcomplete colcon)"
+```
+
+**注意 / Note**: 由于 pixi 的 activation scripts 限制，自动激活补全功能暂时无法通过 `[activation]` 配置实现，需要在进入 pixi 环境后手动执行上述命令。
+
+Due to pixi activation scripts limitations, automatic completion activation cannot be achieved through `[activation]` configuration yet. You need to manually execute the above commands after entering the pixi environment.
+
+### 构建工作空间 / Build Workspace
+
+```bash
+# 进入 pixi 环境 / Enter pixi environment
+pixi shell
+
+# 进入 ROS2 workspace / Enter ROS2 workspace
+cd /path/to/workspace
+
+# 构建工作空间 / Build workspace
+pixi run build
+# 或 / or
+colcon build
+```

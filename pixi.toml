@@ -26,5 +26,9 @@ ros-jazzy-controller-interface = ">=4.42.1,<5"
 ros-jazzy-controller-manager = ">=4.42.1,<5"
 
 [activation]
+# Source ROS2 shell configuration for tab completion
+# scripts = ["auto_complete.bash"]
+# 上述方法暂时无法解决自动激活补全功能，仍需要在 pixi env 中手动执行以上脚本
+
 # Set LIBRARY_PATH to include pixi environment libraries for linking
-scripts = ["set_lib_path.sh"]
+env = { LIBRARY_PATH = "$CONDA_PREFIX/lib${LIBRARY_PATH:+:$LIBRARY_PATH}" }
